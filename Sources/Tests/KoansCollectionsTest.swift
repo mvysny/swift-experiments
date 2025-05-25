@@ -29,4 +29,8 @@ final class KoansCollectionsTest: XCTestCase {
     func testGroupBy() {
         XCTAssertEqual([City.Helsinki : ["mavi"], City.Paris : ["kari", "pasi"]], lidl.groupCustomersByCity().mapValues { $0.map { $0.name } })
     }
+
+    func testPartition() {
+        XCTAssertEqual(["pasi"], lidl.getCustomersWithMoreUndeliveredOrders().map { $0.name })
+    }
 }

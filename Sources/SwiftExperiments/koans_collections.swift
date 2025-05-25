@@ -40,7 +40,7 @@ let lidl = Shop(name: "LIDL", customers: [
     ]),
     Customer(name: "pasi", city: City.Paris, orders: [
         Order(products: [Product(name: "pommes", price: 1.2)], isDelivered: true),
-        Order(products: [Product(name: "miel", price: 2.2)], isDelivered: true),
+        Order(products: [Product(name: "miel", price: 2.2)], isDelivered: false),
         Order(products: [Product(name: "pommes", price: 1.2), Product(name: "miel", price: 2.2)], isDelivered: false),
     ]),
 ])
@@ -98,4 +98,14 @@ extension Shop {
     }
 }
 
+// Collections: Partition
+extension Shop {
+    func getCustomersWithMoreUndeliveredOrders() -> Set<Customer> {
+        customers.filter {
+            var orders = $0.orders
+            let pr: Int = orders.partition { $0.isDelivered }
+            return pr > orders.count / 2
+        } .toSet()
+    }
+}
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
