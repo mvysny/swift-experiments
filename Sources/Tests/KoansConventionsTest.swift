@@ -8,7 +8,7 @@
 import XCTest
 @testable import SwiftExperiments
 
-final class KotlinKoansTest: XCTestCase {
+final class KoansConventionsTest: XCTestCase {
     func testKoanComparisons() {
         XCTAssertLessThan(MyDate.parse("2024-1-1"), MyDate("2024-1-2"))
         XCTAssertEqual("2024-5-6", "\(MyDate(year: 2024, month: 5, day: 6))")
