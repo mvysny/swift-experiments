@@ -428,15 +428,6 @@ extension Shop {
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
 
 func main() throws {
-
-    checkAge(10)
-    expect(true, containsEven([1, 2]))
-    expect(false, containsEven([1, 3, 5]))
-    print(getPeople())
-    expect(true, comparePeople())
-    expect(false, comparePeople2())
-    expect(3, eval(Num(value: 3)))
-    expect(3, eval(Sum(left: Num(value: 2), right: Num(value: 1))))
     expect(1.0, 1.r().doubleValue)
     expect("1/1", "\(1.r())")
     expect(true, MyDate.parse("2024-1-1") < MyDate("2024-1-2"))

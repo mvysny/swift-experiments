@@ -33,4 +33,20 @@ final class KotlinKoansTest: XCTestCase {
         sendMessageToClient(client: Client(personalInfo: PersonalInfo(email: "hi")), message: "foo", mailer: mailer)
         expect(["From hi: foo"], mailer.messages)
     }
+    func testKoan7() {
+        checkAge(10)
+    }
+    func testKoanLambdas() {
+        expect(true, containsEven([1, 2]))
+        expect(false, containsEven([1, 3, 5]))
+    }
+    func testKoanDataClasses() {
+        print(getPeople())
+        expect(true, comparePeople())
+        expect(false, comparePeople2())
+    }
+    func testKoanSmartCasts() {
+        expect(3, eval(Num(value: 3)))
+        expect(3, eval(Sum(left: Num(value: 2), right: Num(value: 1))))
+    }
 }
