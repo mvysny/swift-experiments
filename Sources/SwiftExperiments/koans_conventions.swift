@@ -68,9 +68,9 @@ struct MyDate : CustomStringConvertible, Comparable {
 extension MyDate {
     init(_ str: String) {
         let components = str.split(separator: "-")
-        guard components.count == 3, let year = Int(String(components[0])),
-              let month = Int(String(components[1])),
-              let day = Int(String(components[2])) else {
+        guard components.count == 3, let year = Int(components[0]),
+              let month = Int(components[1]),
+              let day = Int(components[2]) else {
             fatalError("Unparsable date: \(str)")
         }
         self.year = year
