@@ -4,14 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "Swift-Experiments",
+    name: "SwiftExperiments",
     platforms: [
         .macOS(.v13)
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .executableTarget(name: "Swift-Experiments", dependencies: [], path: "Sources"),
-        .testTarget(name: "Tests", dependencies: ["Swift-Experiments"], path: "Tests"),
-]
+        .target(name: "SwiftExperiments", dependencies: []),
+        .executableTarget(name: "Exec", dependencies: [.target(name: "SwiftExperiments")]),
+        .testTarget(name: "Tests", dependencies: [.target(name: "SwiftExperiments")]),
+    ]
 )

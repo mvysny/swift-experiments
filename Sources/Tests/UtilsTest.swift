@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MyDate
+@testable import SwiftExperiments
 
 final class UtilsTest : XCTestCase {
     func testAssociateWith() throws {
