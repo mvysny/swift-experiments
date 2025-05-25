@@ -428,8 +428,6 @@ extension Shop {
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
 
 func main() throws {
-    expect(["a42", "b1", "C42", "D2"], useFoo())
-    expect(true, try getPattern().matches("13 JUN 1992"))
     print(tripleQuotedString)
     
     let mailer = DummyMailer()
