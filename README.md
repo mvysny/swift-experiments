@@ -15,7 +15,7 @@ In both cases:
 
 ## Testing
 
-All koans are tested in the `KotlinKoansTest.swift` file, using the
+All koans are tested as tests, using the
 older [XCTest framework](https://developer.apple.com/documentation/xctest).
 The reason for not using the new [Swift Testing](https://developer.apple.com/documentation/testing/)
 framework is that Swift Testing requires Swift 6+ while Ubuntu 25.04 only offers Swift 5.10 in the official repositories.
