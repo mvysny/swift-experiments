@@ -91,3 +91,7 @@ extension Regex {
 extension TimeZone {
     static let gmt: TimeZone = TimeZone(identifier: "GMT")!
 }
+
+func TODO() -> Never {
+    fatalError("Unimplemented")
+}
