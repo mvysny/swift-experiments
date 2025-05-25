@@ -108,4 +108,18 @@ extension Shop {
         } .toSet()
     }
 }
+
+// Collections: FlatMap
+extension Customer {
+    /// Return all products the given customer has ordered
+    func getOrderedProducts() -> [Product] {
+        orders.flatMap { $0.products }
+    }
+}
+extension Shop {
+    /// Return all products that were ordered by at least one customer
+    func getOrderedProducts() -> Set<Product> {
+        customers.flatMap { $0.getOrderedProducts() } .toSet()
+    }
+}
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
