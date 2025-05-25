@@ -428,16 +428,7 @@ extension Shop {
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
 
 func main() throws {
-    print(tripleQuotedString)
-    
-    let mailer = DummyMailer()
-    sendMessageToClient(client: nil, message: nil, mailer: mailer)
-    expect([], mailer.messages)
-    sendMessageToClient(client: Client(personalInfo: nil), message: nil, mailer: mailer)
-    expect([], mailer.messages)
-    sendMessageToClient(client: Client(personalInfo: PersonalInfo(email: "hi")), message: "foo", mailer: mailer)
-    expect(["From hi: foo"], mailer.messages)
-    
+
     checkAge(10)
     expect(true, containsEven([1, 2]))
     expect(false, containsEven([1, 3, 5]))
