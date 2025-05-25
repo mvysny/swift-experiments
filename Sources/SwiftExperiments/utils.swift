@@ -5,6 +5,8 @@
 //  Created by Martin Vysny on 25.5.2025.
 //
 
+import Foundation
+
 extension Collection where Element: Hashable {
     func toSet() -> Set<Element> {
         if (self is Set<Element>) {
