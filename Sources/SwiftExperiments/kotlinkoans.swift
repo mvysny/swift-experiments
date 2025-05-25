@@ -10,11 +10,6 @@ import Foundation
 func TODO() -> Never {
     fatalError("Unimplemented")
 }
-func expect<T: Equatable>(_ expected: T?, _ actual: T?, _ message: String? = "") {
-    if (expected != actual) {
-        fatalError((message ?? "") + ": expected \((expected ?? "nil") as Any), got \((actual ?? "nil") as Any)")
-    }
-}
 
 
 // koan1
@@ -426,15 +421,3 @@ extension Shop {
 }
 
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
-
-func main() throws {
-    expect(false, lidl.checkAllCustomersAreFrom(city: .Helsinki))
-    expect(true, lidl.hasCustomerFrom(city: .Helsinki))
-    expect(1, lidl.countCustomersFrom(city: .Helsinki))
-    expect(lidl.customers[1], lidl.findCustomerFrom(city: .Helsinki))
-    
-    expect([City.Helsinki : ["mavi"], City.Paris : ["kari", "pasi"]], lidl.groupCustomersByCity().mapValues { $0.map { $0.name } })
-    
-    print("All ok!")
-}
-
