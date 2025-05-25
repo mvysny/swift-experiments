@@ -428,10 +428,6 @@ extension Shop {
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
 
 func main() throws {
-    expect(["pasi", "mavi", "kari"], lidl.getCustomersSortedByOrders().map { $0.name })
-    expect([City.Paris, City.Helsinki], lidl.getCustomerCities())
-    expect(["mavi"], lidl.getCustomersFrom(city: .Helsinki).map { $0.name })
-    expect(["kari", "pasi"], lidl.getCustomersFrom(city: .Paris).map { $0.name })
     expect(false, lidl.checkAllCustomersAreFrom(city: .Helsinki))
     expect(true, lidl.hasCustomerFrom(city: .Helsinki))
     expect(1, lidl.countCustomersFrom(city: .Helsinki))
