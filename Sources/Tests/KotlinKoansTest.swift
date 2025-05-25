@@ -27,26 +27,41 @@ final class KotlinKoansTest: XCTestCase {
     func testKoan6() {
         let mailer = DummyMailer()
         sendMessageToClient(client: nil, message: nil, mailer: mailer)
-        expect([], mailer.messages)
+        XCTAssertEqual([], mailer.messages)
         sendMessageToClient(client: Client(personalInfo: nil), message: nil, mailer: mailer)
-        expect([], mailer.messages)
+        XCTAssertEqual([], mailer.messages)
         sendMessageToClient(client: Client(personalInfo: PersonalInfo(email: "hi")), message: "foo", mailer: mailer)
-        expect(["From hi: foo"], mailer.messages)
+        XCTAssertEqual(["From hi: foo"], mailer.messages)
     }
     func testKoan7() {
         checkAge(10)
     }
     func testKoanLambdas() {
-        expect(true, containsEven([1, 2]))
-        expect(false, containsEven([1, 3, 5]))
+        XCTAssertTrue(containsEven([1, 2]))
+        XCTAssertFalse(containsEven([1, 3, 5]))
     }
     func testKoanDataClasses() {
         print(getPeople())
-        expect(true, comparePeople())
-        expect(false, comparePeople2())
+        XCTAssertTrue(comparePeople())
+        XCTAssertFalse(comparePeople2())
     }
     func testKoanSmartCasts() {
-        expect(3, eval(Num(value: 3)))
-        expect(3, eval(Sum(left: Num(value: 2), right: Num(value: 1))))
+        XCTAssertEqual(3, eval(Num(value: 3)))
+        XCTAssertEqual(3, eval(Sum(left: Num(value: 2), right: Num(value: 1))))
+    }
+    func testKoanExtensionFunctions() {
+        XCTAssertEqual(1.0, 1.r().doubleValue)
+        XCTAssertEqual("1/1", "\(1.r())")
+    }
+    func testKoanComparisons() {
+        XCTAssertLessThan(MyDate.parse("2024-1-1"), MyDate("2024-1-2"))
+        XCTAssertEqual("2024-5-6", "\(MyDate(year: 2024, month: 5, day: 6))")
+        XCTAssertTrue(checkInRange(date: MyDate("2025-2-2"), first: MyDate("2025-1-4"), last: MyDate("2026-1-1")))
+        XCTAssertEqual(MyDate("2024-1-2"), MyDate("2024-1-1").tomorrow())
+        XCTAssertEqual(-1, MyDate("2024-1-2").getDays(to: MyDate("2024-1-1")))
+        XCTAssertEqual(MyDate("2024-1-2"), MyDate("2024-1-1").plusDays(1))
+        XCTAssertEqual(MyDate("2024-1-6"), MyDate("2024-1-1").plusDays(5))
+        XCTAssertEqual(MyDate("2024-1-8"), MyDate("2024-1-1").plusDays(7))
+        XCTAssertEqual(MyDate("2026-1-1"), MyDate("2024-1-1").plusYears(2))
     }
 }

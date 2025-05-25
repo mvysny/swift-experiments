@@ -428,8 +428,6 @@ extension Shop {
 // todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
 
 func main() throws {
-    expect(1.0, 1.r().doubleValue)
-    expect("1/1", "\(1.r())")
     expect(true, MyDate.parse("2024-1-1") < MyDate("2024-1-2"))
     expect("2024-5-6", "\(MyDate(year: 2024, month: 5, day: 6))")
     expect(true, checkInRange(date: MyDate("2025-2-2"), first: MyDate("2025-1-4"), last: MyDate("2026-1-1")))
