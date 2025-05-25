@@ -19,10 +19,10 @@ struct MyDate : CustomStringConvertible, Comparable {
         }
     }
     
-    static func parse(_ input: String) -> MyDate {
-        MyDate(input)
+    static func parse(_ input: String) throws -> MyDate {
+        try MyDate(input)
     }
-    
+
     private func toDate() -> Date {
         let c = Calendar.current
         let dateComponents = DateComponents(
@@ -65,13 +65,17 @@ struct MyDate : CustomStringConvertible, Comparable {
     }
 }
 
+enum DateParsingError : Error {
+    case unparsableDate(_ str: String)
+}
+
 extension MyDate {
-    init(_ str: String) {
+    init(_ str: String) throws {
         let components = str.split(separator: "-")
         guard components.count == 3, let year = Int(components[0]),
               let month = Int(components[1]),
               let day = Int(components[2]) else {
-            fatalError("Unparsable date: \(str)")
+            throw DateParsingError.unparsableDate(str)
         }
         self.year = year
         self.month = month
