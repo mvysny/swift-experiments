@@ -22,4 +22,7 @@ final class UtilsTest : XCTestCase {
         XCTAssertTrue(try #/aaa/#.matches("aaa"))
         XCTAssertFalse(try #/aaa/#.matches("aaaa"))
     }
+    func testSortedBy() {
+        XCTAssertEqual(["z", "aa", "ddd", "bbbb"], ["aa", "bbbb", "ddd", "z"].sortedBy { $0.count })
+    }
 }
