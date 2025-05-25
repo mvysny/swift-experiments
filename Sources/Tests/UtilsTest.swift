@@ -10,6 +10,12 @@ import XCTest
 
 final class UtilsTest : XCTestCase {
     func testAssociateWith() throws {
-        print(["a":1, "aa":2], ["a", "aa"].associateWith { $0.count })
+        XCTAssertEqual(["a":1, "aa":2], ["a", "aa"].associateWith { $0.count })
+    }
+    func testAssociate() {
+        XCTAssertEqual(["A":1, "AA":2], ["a", "aa"].associate { ($0.uppercased(), $0.count) })
+    }
+    func testAssociateBy() {
+        XCTAssertEqual([1:"a", 2:"aa"], ["a", "aa"].associateBy { $0.count })
     }
 }
