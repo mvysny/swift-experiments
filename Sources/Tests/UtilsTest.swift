@@ -18,4 +18,8 @@ final class UtilsTest : XCTestCase {
     func testAssociateBy() {
         XCTAssertEqual([1:"a", 2:"aa"], ["a", "aa"].associateBy { $0.count })
     }
+    func testRegexMatches() throws {
+        XCTAssertTrue(try #/aaa/#.matches("aaa"))
+        XCTAssertFalse(try #/aaa/#.matches("aaaa"))
+    }
 }

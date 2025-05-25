@@ -79,3 +79,13 @@ extension Collection {
         Dictionary(uniqueKeysWithValues: try self.map { try transform($0) })
     }
 }
+
+extension Regex {
+    func matches(_ string: String) throws -> Bool {
+        try wholeMatch(in: string) != nil
+    }
+}
+
+extension TimeZone {
+    static let gmt: TimeZone = TimeZone(identifier: "GMT")!
+}

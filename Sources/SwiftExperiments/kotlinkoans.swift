@@ -15,9 +15,6 @@ func expect<T: Equatable>(_ expected: T?, _ actual: T?, _ message: String? = "")
         fatalError((message ?? "") + ": expected \((expected ?? "nil") as Any), got \((actual ?? "nil") as Any)")
     }
 }
-extension TimeZone {
-    static let gmt: TimeZone = TimeZone(identifier: "GMT")!
-}
 
 
 // koan1
@@ -50,11 +47,6 @@ answer = \(answer)
 let month = "(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)"
 func getPattern() -> Regex<(Substring, Substring)> {
     try! Regex("\\d{2} \(month) \\d{4}")
-}
-extension Regex {
-    func matches(_ string: String) throws -> Bool {
-        try wholeMatch(in: string) != nil
-    }
 }
 
 // koan6
