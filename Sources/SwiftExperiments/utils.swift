@@ -80,6 +80,10 @@ extension Collection {
     func associate<K: Hashable, V>(_ transform: (Element) throws -> (K, V)) rethrows -> [K: V] {
         Dictionary(uniqueKeysWithValues: try self.map { try transform($0) })
     }
+    
+    func maxByOrNull<C: Comparable>(_ extractor: (Element) throws -> C) rethrows -> Element? {
+        try max { try extractor($0) < (try extractor($1)) }
+    }
 }
 
 extension Regex {

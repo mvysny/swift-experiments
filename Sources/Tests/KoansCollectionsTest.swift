@@ -40,4 +40,10 @@ final class KoansCollectionsTest: XCTestCase {
         XCTAssertEqual(["pommes", "miel", "pommes", "miel"], lidl.customers.first { $0.name == "pasi" }! .getOrderedProducts().map { $0.name })
         XCTAssertEqual(["miel", "pommes"], lidl.getOrderedProducts().map { $0.name } .sorted())
     }
+    
+    /// https://play.kotlinlang.org/koans/Collections/Max%20min/Task.kt
+    func testMaxMin() {
+        XCTAssertEqual("pasi", lidl.getCustomerWithMaxOrders()!.name)
+        XCTAssertEqual("miel", getMostExpensiveProductBy(customer: lidl.customers[2])!.name)
+    }
 }

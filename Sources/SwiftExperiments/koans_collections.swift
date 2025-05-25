@@ -122,4 +122,19 @@ extension Shop {
         customers.flatMap { $0.getOrderedProducts() } .toSet()
     }
 }
-// todo more: https://play.kotlinlang.org/koans/Collections/Partition/Task.kt
+
+// Collections: Max min
+/// Return a customer who has placed the maximum amount of orders
+
+extension Shop {
+    func getCustomerWithMaxOrders() -> Customer? {
+        customers.max { $0.orders.count < $1.orders.count }
+    }
+}
+
+/// Return the most expensive product that has been ordered by the given customer
+func getMostExpensiveProductBy(customer: Customer) -> Product? {
+    customer.getOrderedProducts().maxByOrNull { $0.price }
+}
+
+// todo more: https://play.kotlinlang.org/koans/Collections/Sum/Task.kt

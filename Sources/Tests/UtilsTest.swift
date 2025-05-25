@@ -25,4 +25,7 @@ final class UtilsTest : XCTestCase {
     func testSortedBy() {
         XCTAssertEqual(["z", "aa", "ddd", "bbbb"], ["aa", "bbbb", "ddd", "z"].sortedBy { $0.count })
     }
+    func testMaxByOrNull() {
+        XCTAssertEqual("bbbb", ["aa", "bbbb", "ddd", "z"].maxByOrNull { $0.count })
+    }
 }
