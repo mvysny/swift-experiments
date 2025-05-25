@@ -14,6 +14,7 @@ final class KoansConventionsTest: XCTestCase {
         XCTAssertEqual("2024-5-6", "\(MyDate(year: 2024, month: 5, day: 6))")
         XCTAssertTrue(checkInRange(date: try MyDate("2025-2-2"), first: try MyDate("2025-1-4"), last: try MyDate("2026-1-1")))
         XCTAssertEqual(try MyDate("2024-1-2"), try MyDate("2024-1-1").tomorrow())
+        XCTAssertEqual(try MyDate("2024-1-1"), try MyDate("2024-1-2").yesterday())
         XCTAssertEqual(-1, try MyDate("2024-1-2").getDays(to: try MyDate("2024-1-1")))
         XCTAssertEqual(try MyDate("2024-1-2"), try MyDate("2024-1-1").plusDays(1))
         XCTAssertEqual(try MyDate("2024-1-6"), try MyDate("2024-1-1").plusDays(5))

@@ -37,6 +37,10 @@ struct MyDate : CustomStringConvertible, Comparable {
         plusDays(1)
     }
     
+    func yesterday() -> MyDate {
+        plusDays(-1)
+    }
+    
     func plusDays(_ days: Int) -> MyDate {
         guard days != 0 else { return self }
         let date = toDate()
