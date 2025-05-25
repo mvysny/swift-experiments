@@ -1,0 +1,22 @@
+name: Maven
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        swift: ["5.10"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: swift-actions/setup-swift@v2
+      with:
+        swift-veersion: ${{ matrix.swift }}
+    - name: Build
+      run: swift build
+
