@@ -85,8 +85,8 @@ extension Collection {
         try self.max { try extractor($0) < (try extractor($1)) }
     }
 
-    /// Returns the sum of all values produced by [extractor] function applied to each element in the array.
-    /// 
+    /// Returns the sum of all values produced by extractor function applied to each element in the array.
+    ///
     /// - Parameter extractor: a closure which converts each element of the sequence into a number.
     /// - Returns: the sum of all numbers produced by the extractor.
     func sumOf<N: AdditiveArithmetic>(_ extractor: (Element) throws -> N) rethrows -> N {

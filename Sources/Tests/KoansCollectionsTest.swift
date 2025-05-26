@@ -58,4 +58,14 @@ final class KoansCollectionsTest: XCTestCase {
     func testFoldAndReduce() {
         XCTAssertEqual(["pommes"], lidl.getProductsOrderedByAll().map { $0.name })
     }
+    
+    /// https://play.kotlinlang.org/koans/Collections/Compound%20tasks/Task.kt
+    func testCompoundTasks() {
+        XCTAssertEqual("pommes", findMostExpensiveProductBy(customer: lidl.customers[0])?.name)
+        XCTAssertEqual("miel", findMostExpensiveProductBy(customer: lidl.customers[1])?.name)
+        XCTAssertEqual("pommes", findMostExpensiveProductBy(customer: lidl.customers[2])?.name)
+        
+        XCTAssertEqual(4, lidl.getNumberOfTimesProductWasOrdered(product: pommes))
+        XCTAssertEqual(4, lidl.getNumberOfTimesProductWasOrdered(product: miel))
+    }
 }

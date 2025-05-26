@@ -32,18 +32,20 @@ extension Shop {
     }
 }
 
+let pommes = Product(name: "pommes", price: 1.2)
+let miel = Product(name: "miel", price: 2.2)
 let lidl = Shop(name: "LIDL", customers: [
     Customer(name: "kari", city: City.Paris, orders: [
-        Order(products: [Product(name: "pommes", price: 1.2)], isDelivered: true)
+        Order(products: [pommes], isDelivered: true)
     ]),
     Customer(name: "mavi", city: City.Helsinki, orders: [
-        Order(products: [Product(name: "pommes", price: 1.2), Product(name: "miel", price: 2.2)], isDelivered: true),
-        Order(products: [Product(name: "miel", price: 2.2)], isDelivered: false),
+        Order(products: [pommes, miel], isDelivered: true),
+        Order(products: [miel], isDelivered: false),
     ]),
     Customer(name: "pasi", city: City.Paris, orders: [
-        Order(products: [Product(name: "pommes", price: 1.2)], isDelivered: true),
-        Order(products: [Product(name: "miel", price: 2.2)], isDelivered: false),
-        Order(products: [Product(name: "pommes", price: 1.2), Product(name: "miel", price: 2.2)], isDelivered: false),
+        Order(products: [pommes], isDelivered: true),
+        Order(products: [miel], isDelivered: false),
+        Order(products: [pommes, miel], isDelivered: false),
     ]),
 ])
 
@@ -153,5 +155,18 @@ extension Shop {
     }
 }
 
+// Compound tasks
+/// Find the most expensive product among all the delivered products
+/// ordered by the customer. Use [Order.isDelivered] flag.
+func findMostExpensiveProductBy(customer: Customer) -> Product? {
+    customer.orders.filter { $0.isDelivered } .flatMap { $0.products } .maxByOrNull { $0.price }
+}
 
+extension Shop {
+    /// Count the amount of times a product was ordered.
+    /// Note that a customer may order the same product several times.
+    func getNumberOfTimesProductWasOrdered(product: Product) -> Int {
+        customers.flatMap { $0.getOrderedProducts() } .filter { $0 == product } .count
+    }
+}
 // todo more: https://play.kotlinlang.org/koans/Collections/Sum/Task.kt
