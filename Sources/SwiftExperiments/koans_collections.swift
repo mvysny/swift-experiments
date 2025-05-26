@@ -159,14 +159,14 @@ extension Shop {
 /// Find the most expensive product among all the delivered products
 /// ordered by the customer. Use [Order.isDelivered] flag.
 func findMostExpensiveProductBy(customer: Customer) -> Product? {
-    customer.orders.filter { $0.isDelivered } .flatMap { $0.products } .maxByOrNull { $0.price }
+    customer.orders.lazy.filter { $0.isDelivered } .flatMap { $0.products } .maxByOrNull { $0.price }
 }
 
 extension Shop {
     /// Count the amount of times a product was ordered.
     /// Note that a customer may order the same product several times.
     func getNumberOfTimesProductWasOrdered(product: Product) -> Int {
-        customers.flatMap { $0.getOrderedProducts() } .filter { $0 == product } .count
+        customers.lazy.flatMap { $0.getOrderedProducts() } .count { $0 == product }
     }
 }
 // todo more: https://play.kotlinlang.org/koans/Collections/Sum/Task.kt
