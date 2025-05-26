@@ -28,4 +28,18 @@ final class UtilsTest : XCTestCase {
     func testMaxByOrNull() {
         XCTAssertEqual("bbbb", ["aa", "bbbb", "ddd", "z"].maxByOrNull { $0.count })
     }
+    func testSumInt() {
+        XCTAssertEqual(0, [Int]().sum())
+        XCTAssertEqual(6, [1, 2, 3].sum())
+    }
+    func testSumDouble() {
+        XCTAssertEqual(0.0, [Double]().sum())
+        XCTAssertEqual(6.0, [1.0, 2,0, 3.0].sum())
+    }
+    func testSumOfInt() {
+        XCTAssertEqual(10, ["aa", "bbbb", "ddd", "z"].sumOf { $0.count })
+    }
+    func testSumOfDouble() {
+        XCTAssertEqual(10.0, ["aa", "bbbb", "ddd", "z"].sumOf { Double($0.count) })
+    }
 }

@@ -46,4 +46,11 @@ final class KoansCollectionsTest: XCTestCase {
         XCTAssertEqual("pasi", lidl.getCustomerWithMaxOrders()!.name)
         XCTAssertEqual("miel", getMostExpensiveProductBy(customer: lidl.customers[2])!.name)
     }
+
+    /// https://play.kotlinlang.org/koans/Collections/Sum/Task.kt
+    func testSum() {
+        XCTAssertEqual(0.0, moneySpentBy(customer: lidl.customers[0]), accuracy: 0.1)
+        XCTAssertEqual(5.6, moneySpentBy(customer: lidl.customers[1]), accuracy: 0.1)
+        XCTAssertEqual(6.8, moneySpentBy(customer: lidl.customers[2]), accuracy: 0.1)
+    }
 }

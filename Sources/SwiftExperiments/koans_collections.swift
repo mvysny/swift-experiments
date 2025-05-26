@@ -137,4 +137,10 @@ func getMostExpensiveProductBy(customer: Customer) -> Product? {
     customer.getOrderedProducts().maxByOrNull { $0.price }
 }
 
+// Sum
+/// Return the sum of prices for all the products ordered by a given customer
+func moneySpentBy(customer: Customer) -> Double {
+    customer.getOrderedProducts().sumOf { $0.price }
+}
+
 // todo more: https://play.kotlinlang.org/koans/Collections/Sum/Task.kt

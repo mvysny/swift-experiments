@@ -84,6 +84,22 @@ extension Collection {
     func maxByOrNull<C: Comparable>(_ extractor: (Element) throws -> C) rethrows -> Element? {
         try max { try extractor($0) < (try extractor($1)) }
     }
+
+    func sumOf(_ extractor: (Element) throws -> Int) rethrows -> Int {
+        var sum = 0
+        for i in self {
+            sum += try extractor(i)
+        }
+        return sum
+    }
+
+    func sumOf(_ extractor: (Element) throws -> Double) rethrows -> Double {
+        var sum = 0.0
+        for i in self {
+            sum += try extractor(i)
+        }
+        return sum
+    }
 }
 
 extension Regex {
@@ -98,4 +114,16 @@ extension TimeZone {
 
 func TODO() -> Never {
     fatalError("Unimplemented")
+}
+
+extension Collection where Element == Int {
+    func sum() -> Int {
+        reduce(0, +)
+    }
+}
+
+extension Collection where Element == Double {
+    func sum() -> Double {
+        reduce(0, +)
+    }
 }
