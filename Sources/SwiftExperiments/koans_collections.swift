@@ -33,7 +33,9 @@ extension Shop {
 }
 
 let lidl = Shop(name: "LIDL", customers: [
-    Customer(name: "kari", city: City.Paris, orders: []),
+    Customer(name: "kari", city: City.Paris, orders: [
+        Order(products: [Product(name: "pommes", price: 1.2)], isDelivered: true)
+    ]),
     Customer(name: "mavi", city: City.Helsinki, orders: [
         Order(products: [Product(name: "pommes", price: 1.2), Product(name: "miel", price: 2.2)], isDelivered: true),
         Order(products: [Product(name: "miel", price: 2.2)], isDelivered: false),
@@ -142,5 +144,14 @@ func getMostExpensiveProductBy(customer: Customer) -> Product? {
 func moneySpentBy(customer: Customer) -> Double {
     customer.getOrderedProducts().sumOf { $0.price }
 }
+
+// Fold and reduce
+/// Return the set of products that were ordered by all customers
+extension Shop {
+    func getProductsOrderedByAll() -> Set<Product> {
+        customers.reduce(self.getOrderedProducts()) { $0.intersection($1.getOrderedProducts()) }
+    }
+}
+
 
 // todo more: https://play.kotlinlang.org/koans/Collections/Sum/Task.kt

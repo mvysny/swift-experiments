@@ -49,8 +49,13 @@ final class KoansCollectionsTest: XCTestCase {
 
     /// https://play.kotlinlang.org/koans/Collections/Sum/Task.kt
     func testSum() {
-        XCTAssertEqual(0.0, moneySpentBy(customer: lidl.customers[0]), accuracy: 0.1)
+        XCTAssertEqual(1.2, moneySpentBy(customer: lidl.customers[0]), accuracy: 0.1)
         XCTAssertEqual(5.6, moneySpentBy(customer: lidl.customers[1]), accuracy: 0.1)
         XCTAssertEqual(6.8, moneySpentBy(customer: lidl.customers[2]), accuracy: 0.1)
+    }
+
+    /// https://play.kotlinlang.org/koans/Collections/Fold%20and%20reduce/Task.kt
+    func testFoldAndReduce() {
+        XCTAssertEqual(["pommes"], lidl.getProductsOrderedByAll().map { $0.name })
     }
 }
