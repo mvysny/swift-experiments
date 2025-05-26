@@ -81,7 +81,7 @@ extension Collection {
         Dictionary(uniqueKeysWithValues: try self.map { try transform($0) })
     }
     
-    func maxByOrNull<C: Comparable>(_ extractor: (Element) throws -> C) rethrows -> Element? {
+    func maxBy<C: Comparable>(_ extractor: (Element) throws -> C) rethrows -> Element? {
         try self.max { try extractor($0) < (try extractor($1)) }
     }
 

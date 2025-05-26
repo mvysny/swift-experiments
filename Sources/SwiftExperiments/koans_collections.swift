@@ -138,7 +138,7 @@ extension Shop {
 
 /// Return the most expensive product that has been ordered by the given customer
 func getMostExpensiveProductBy(customer: Customer) -> Product? {
-    customer.getOrderedProducts().maxByOrNull { $0.price }
+    customer.getOrderedProducts().maxBy { $0.price }
 }
 
 // Sum
@@ -159,7 +159,7 @@ extension Shop {
 /// Find the most expensive product among all the delivered products
 /// ordered by the customer. Use [Order.isDelivered] flag.
 func findMostExpensiveProductBy(customer: Customer) -> Product? {
-    customer.orders.lazy.filter { $0.isDelivered } .flatMap { $0.products } .maxByOrNull { $0.price }
+    customer.orders.lazy.filter { $0.isDelivered } .flatMap { $0.products } .maxBy { $0.price }
 }
 
 extension Shop {
@@ -169,4 +169,10 @@ extension Shop {
         customers.lazy.flatMap { $0.getOrderedProducts() } .count { $0 == product }
     }
 }
-// todo more: https://play.kotlinlang.org/koans/Collections/Sum/Task.kt
+
+// Getting used to new style
+func doSomethingWithCollection(collection: [String]) -> [String]? {
+    let groupsByLength = collection.groupBy { $0.count }
+    let maximumSizeOfGroup: Int = groupsByLength.values.map { $0.count } .max()!
+    return groupsByLength.values.first { $0.count == maximumSizeOfGroup }
+}

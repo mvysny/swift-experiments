@@ -68,4 +68,9 @@ final class KoansCollectionsTest: XCTestCase {
         XCTAssertEqual(4, lidl.getNumberOfTimesProductWasOrdered(product: pommes))
         XCTAssertEqual(4, lidl.getNumberOfTimesProductWasOrdered(product: miel))
     }
+    
+    /// https://play.kotlinlang.org/koans/Collections/Getting%20used%20to%20new%20style/Task.kt
+    func testGettingUsedToNewStyle() {
+        XCTAssertEqual(["a", "a", "b"], doSomethingWithCollection(collection: ["a", "a", "b", "bb", "cc", "ddd"]))
+    }
 }
