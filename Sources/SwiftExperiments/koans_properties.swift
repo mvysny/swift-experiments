@@ -16,3 +16,21 @@ class PropertyExample {
         }
     }
 }
+
+// https://play.kotlinlang.org/koans/Properties/Lazy%20property/Task.kt
+class LazyProperty {
+    let initializer: () -> Int
+    init(_ initializer: @escaping () -> Int) {
+        self.initializer = initializer
+    }
+    
+    private var value: Int? = nil
+    var lazyValue: Int {
+        get {
+            if (value == nil) {
+                value = initializer()
+            }
+            return value!
+        }
+    }
+}

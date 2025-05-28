@@ -22,4 +22,10 @@ final class KoansPropertiesTest: XCTestCase {
         XCTAssertEqual(3, pe.propertyWithCounter)
         XCTAssertEqual(2, pe.counter)
     }
+    
+    /// https://play.kotlinlang.org/koans/Properties/Lazy%20property/Task.kt
+    func testLazyProperty() {
+        let value = LazyProperty({ 42 }).lazyValue
+        XCTAssertEqual(42, value)
+    }
 }
