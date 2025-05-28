@@ -8,6 +8,9 @@ let package = Package(
     platforms: [
         .macOS(.v13)
     ],
+    products: [
+        .executable(name: "Exec", targets: ["Exec"]),
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-numerics", from: "1.0.3"),
     ],
