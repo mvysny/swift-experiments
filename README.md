@@ -16,10 +16,8 @@ In both cases:
 ## Testing
 
 All koans are tested as tests, using the
-older [XCTest framework](https://developer.apple.com/documentation/xctest).
-The reason for not using the new [Swift Testing](https://developer.apple.com/documentation/testing/)
-framework is that Swift Testing requires Swift 6+ while Ubuntu 25.04 only offers Swift 5.10 in the official repositories.
-After Ubuntu upgrades Swift, we'll switch to Swift Testing.
+[Swift Testing](https://developer.apple.com/documentation/testing/)
+framework. Note that Swift Testing requires Swift 6+ while Ubuntu 25.04 only offers Swift 5.10 in the official repositories.
 
 Tests are implemented in the `Tests` test target (see `Package.swift` for more details). The test target pulls in
 the common code from the `SwiftExperiments` target; all tests then `@testable import SwiftExperiments`
