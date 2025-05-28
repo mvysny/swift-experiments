@@ -1,7 +1,7 @@
 # Kotlin Koans in Swift
 
 The [Kotlin Koans](https://play.kotlinlang.org/koans/overview), but done in the
-[Swift programming language](https://www.swift.org). Requires Swift 5.10 or higher.
+[Swift programming language](https://www.swift.org). Requires Swift 6 or higher.
 
 This project can be opened in Linux or in MacOS:
 
