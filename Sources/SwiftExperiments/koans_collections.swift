@@ -52,7 +52,7 @@ let lidl = Shop(name: "LIDL", customers: [
 // Collections: Sort
 extension Shop {
     func getCustomersSortedByOrders() -> [Customer] {
-        customers.sortedBy { -$0.orders.count }
+        customers.sorted(by: { -$0.orders.count })
     }
 }
 
@@ -85,10 +85,10 @@ extension Shop {
 // Collections: Associate
 extension Shop {
     func nameToCustomerMap() -> [String: Customer] {
-        customers.associateBy { $0.name }
+        customers.associate(by: { $0.name })
     }
     func customerToCityMap() -> [Customer: City] {
-        customers.associateWith { $0.city }
+        customers.associate(with: { $0.city })
     }
     func customerNameToCityMap() -> [String: City] {
         customers.associate { ($0.name, $0.city) }
@@ -98,7 +98,7 @@ extension Shop {
 // Collections: GroupBy
 extension Shop {
     func groupCustomersByCity() -> [City: [Customer]] {
-        customers.groupBy { $0.city }
+        customers.group(by: { $0.city })
     }
 }
 
@@ -138,13 +138,13 @@ extension Shop {
 
 /// Return the most expensive product that has been ordered by the given customer
 func getMostExpensiveProductBy(customer: Customer) -> Product? {
-    customer.getOrderedProducts().maxBy { $0.price }
+    customer.getOrderedProducts().max(by: { $0.price })
 }
 
 // Sum
 /// Return the sum of prices for all the products ordered by a given customer
 func moneySpentBy(customer: Customer) -> Double {
-    customer.getOrderedProducts().sumOf { $0.price }
+    customer.getOrderedProducts().map { $0.price } .sum()
 }
 
 // Fold and reduce
@@ -159,7 +159,7 @@ extension Shop {
 /// Find the most expensive product among all the delivered products
 /// ordered by the customer. Use [Order.isDelivered] flag.
 func findMostExpensiveProductBy(customer: Customer) -> Product? {
-    customer.orders.lazy.filter { $0.isDelivered } .flatMap { $0.products } .maxBy { $0.price }
+    customer.orders.lazy.filter { $0.isDelivered } .flatMap { $0.products } .max(by: { $0.price })
 }
 
 extension Shop {
@@ -172,7 +172,7 @@ extension Shop {
 
 // Getting used to new style
 func doSomethingWithCollection(collection: [String]) -> [String]? {
-    let groupsByLength = collection.groupBy { $0.count }
+    let groupsByLength = collection.group(by: { $0.count })
     let maximumSizeOfGroup: Int = groupsByLength.values.map { $0.count } .max()!
     return groupsByLength.values.first { $0.count == maximumSizeOfGroup }
 }

@@ -28,13 +28,13 @@ extension Collection where Element: Hashable {
     /// - Parameter transform: Closure which provides values. `transform` accepts an
     ///   element of this sequence as its parameter and returns the values to be put in resulting dictionary.
     /// - Returns: A dictionary, with keys equal to elements of this array
-    func associateWith<V>(_ transform: (Element) throws -> V) rethrows -> [Element: V] {
+    func associate<V>(with transform: (Element) throws -> V) rethrows -> [Element: V] {
         Dictionary(uniqueKeysWithValues: try self.map { ($0, try transform($0)) })
     }
 }
 
 extension Collection {
-    func sortedBy<C: Comparable>(_ extractor: (Element) throws -> C) rethrows -> [Element] {
+    func sorted<C: Comparable>(by extractor: (Element) throws -> C) rethrows -> [Element] {
         try sorted { try extractor($0) < (try extractor($1)) }
     }
     
@@ -67,21 +67,21 @@ extension Collection {
         try filter(predicate).count
     }
     
-    func groupBy<Key: Hashable>(_ transform: (Element) throws -> Key) rethrows -> [Key: [Element]] {
+    func group<Key: Hashable>(by transform: (Element) throws -> Key) rethrows -> [Key: [Element]] {
         try reduce(into: [:]) { result, element in
             let key = try transform(element)
             result[key, default: []].append(element)
         }
     }
     
-    func associateBy<K: Hashable>(_ transform: (Element) throws -> K) rethrows -> [K: Element] {
+    func associate<K: Hashable>(by transform: (Element) throws -> K) rethrows -> [K: Element] {
         Dictionary(uniqueKeysWithValues: try self.map { try (transform($0), $0) })
     }
     func associate<K: Hashable, V>(_ transform: (Element) throws -> (K, V)) rethrows -> [K: V] {
         Dictionary(uniqueKeysWithValues: try self.map { try transform($0) })
     }
     
-    func maxBy<C: Comparable>(_ extractor: (Element) throws -> C) rethrows -> Element? {
+    func max<C: Comparable>(by extractor: (Element) throws -> C) rethrows -> Element? {
         try self.max { try extractor($0) < (try extractor($1)) }
     }
 
@@ -89,7 +89,7 @@ extension Collection {
     ///
     /// - Parameter extractor: a closure which converts each element of the sequence into a number.
     /// - Returns: the sum of all numbers produced by the extractor.
-    func sumOf<N: AdditiveArithmetic>(_ extractor: (Element) throws -> N) rethrows -> N {
+    func sum<N: AdditiveArithmetic>(of extractor: (Element) throws -> N) rethrows -> N {
         var sum = N.zero
         for i in self {
             sum += try extractor(i)
