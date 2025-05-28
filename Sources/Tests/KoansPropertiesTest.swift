@@ -6,48 +6,48 @@
 //
 
 
-import XCTest
+import Testing
 @testable import SwiftExperiments
 
-final class KoansPropertiesTest: XCTestCase {
+struct KoansPropertiesTest {
     /// https://play.kotlinlang.org/koans/Properties/Properties/Task.kt
-    func testProperties() {
+    @Test func testProperties() {
         let pe = PropertyExample()
-        XCTAssertEqual(nil, pe.propertyWithCounter)
-        XCTAssertEqual(0, pe.counter)
+        #expect(pe.propertyWithCounter == nil)
+        #expect(pe.counter == 0)
         pe.propertyWithCounter = 2
-        XCTAssertEqual(2, pe.propertyWithCounter)
-        XCTAssertEqual(1, pe.counter)
+        #expect(pe.propertyWithCounter == 2)
+        #expect(pe.counter == 1)
         pe.propertyWithCounter = 3
-        XCTAssertEqual(3, pe.propertyWithCounter)
-        XCTAssertEqual(2, pe.counter)
+        #expect(pe.propertyWithCounter == 3)
+        #expect(pe.counter == 2)
     }
     
     /// https://play.kotlinlang.org/koans/Properties/Lazy%20property/Task.kt
-    func testLazyProperty() {
+    @Test func testLazyProperty() {
         var called = false
         let prop = LazyProperty({ called = true; return 42 })
-        XCTAssertFalse(called)
+        #expect(!called)
         let value = prop.lazyValue
-        XCTAssertEqual(42, value)
-        XCTAssertTrue(called)
+        #expect(value == 42)
+        #expect(called)
     }
     
     /// https://play.kotlinlang.org/koans/Properties/Delegates%20examples/Task.kt
-    func testLazyProperty2() {
+    @Test func testLazyProperty2() {
         var called = false
         let prop = LazyProperty2({ called = true; return 42 })
-        XCTAssertFalse(called)
+        #expect(!called)
         let value = prop.value
-        XCTAssertEqual(42, value)
-        XCTAssertTrue(called)
+        #expect(value == 42)
+        #expect(called)
     }
     
     /// https://play.kotlinlang.org/koans/Properties/Delegates%20how%20it%20works/Task.kt
-    func testDelegates() throws {
+    @Test func testDelegates() throws {
         var d = D()
-        XCTAssertNil(d.date)
+        #expect(d.date == nil)
         d.date = try MyDate("2025-2-3")
-        XCTAssertEqual(try MyDate("2025-2-3"), d.date)
+        #expect(d.date == (try MyDate("2025-2-3")))
     }
 }
