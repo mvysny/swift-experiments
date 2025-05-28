@@ -23,7 +23,7 @@ struct MyDate : CustomStringConvertible, Comparable {
         try MyDate(input)
     }
 
-    private func toDate() -> Date {
+    func atStartOfDayUTC() -> Date {
         let c = Calendar.current
         let dateComponents = DateComponents(
             calendar: c, timeZone: TimeZone.gmt,
@@ -43,7 +43,7 @@ struct MyDate : CustomStringConvertible, Comparable {
     
     func plusDays(_ days: Int) -> MyDate {
         guard days != 0 else { return self }
-        let date = toDate()
+        let date = atStartOfDayUTC()
         let c = Calendar.current
         let nextDate = c.date(byAdding: Calendar.Component.day, value: days, to: date)!
         return MyDate(nextDate)
@@ -55,15 +55,15 @@ struct MyDate : CustomStringConvertible, Comparable {
     
     func plusYears(_ years: Int) -> MyDate {
         guard years != 0 else { return self }
-        let date = toDate()
+        let date = atStartOfDayUTC()
         let c = Calendar.current
         let nextDate = c.date(byAdding: Calendar.Component.year, value: years, to: date)!
         return MyDate(nextDate)
     }
     
     func getDays(to other: MyDate) -> Int {
-        let date1 = toDate()
-        let date2 = other.toDate()
+        let date1 = atStartOfDayUTC()
+        let date2 = other.atStartOfDayUTC()
         let components = Calendar.current.dateComponents([.day], from: date1, to: date2)
         return components.day!
     }

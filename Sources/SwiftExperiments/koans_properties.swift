@@ -5,6 +5,8 @@
 //  Created by Martin Vysny on 26.5.2025.
 //
 
+import Foundation
+
 // Properties
 // https://play.kotlinlang.org/koans/Properties/Properties/Task.kt
 
@@ -43,4 +45,23 @@ class LazyProperty2 {
     }
 
     lazy var value: Int = initializer()
+}
+
+// https://play.kotlinlang.org/koans/Properties/Delegates%20how%20it%20works/Task.kt
+@propertyWrapper
+struct EffectiveDate {
+    var timeInMillis: Foundation.TimeInterval? = nil
+    var wrappedValue: MyDate? {
+        get {
+            guard let time = timeInMillis else { return nil }
+            return MyDate(Date(timeIntervalSince1970: time))
+        }
+        set {
+            timeInMillis = newValue?.atStartOfDayUTC().timeIntervalSince1970
+        }
+    }
+}
+
+struct D {
+    @EffectiveDate var date: MyDate?
 }

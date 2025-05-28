@@ -42,4 +42,12 @@ final class KoansPropertiesTest: XCTestCase {
         XCTAssertEqual(42, value)
         XCTAssertTrue(called)
     }
+    
+    /// https://play.kotlinlang.org/koans/Properties/Delegates%20how%20it%20works/Task.kt
+    func testDelegates() throws {
+        var d = D()
+        XCTAssertNil(d.date)
+        d.date = try MyDate("2025-2-3")
+        XCTAssertEqual(try MyDate("2025-2-3"), d.date)
+    }
 }
