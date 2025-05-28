@@ -5,21 +5,21 @@
 //  Created by Martin Vysny on 25.5.2025.
 //
 
-import XCTest
+import Testing
 @testable import SwiftExperiments
 
-final class KoansClassesTest: XCTestCase {
-    func testKoanDataClasses() {
+struct KoansClassesTest {
+    @Test func testKoanDataClasses() {
         print(getPeople())
-        XCTAssertTrue(comparePeople())
-        XCTAssertFalse(comparePeople2())
+        #expect(comparePeople())
+        #expect(!comparePeople2())
     }
-    func testKoanSmartCasts() {
-        XCTAssertEqual(3, eval(Num(value: 3)))
-        XCTAssertEqual(3, eval(Sum(left: Num(value: 2), right: Num(value: 1))))
+    @Test func testKoanSmartCasts() {
+        #expect(3 == eval(Num(value: 3)))
+        #expect(3 == eval(Sum(left: Num(value: 2), right: Num(value: 1))))
     }
-    func testKoanExtensionFunctions() {
-        XCTAssertEqual(1.0, 1.r().doubleValue)
-        XCTAssertEqual("1/1", "\(1.r())")
+    @Test func testKoanExtensionFunctions() {
+        #expect(1.r().doubleValue == 1.0)
+        #expect("1/1" == "\(1.r())")
     }
 }
