@@ -19,7 +19,7 @@ class PropertyExample {
 
 // https://play.kotlinlang.org/koans/Properties/Lazy%20property/Task.kt
 class LazyProperty {
-    let initializer: () -> Int
+    private let initializer: () -> Int
     init(_ initializer: @escaping () -> Int) {
         self.initializer = initializer
     }
@@ -33,4 +33,14 @@ class LazyProperty {
             return value!
         }
     }
+}
+
+// https://play.kotlinlang.org/koans/Properties/Delegates%20examples/Task.kt
+class LazyProperty2 {
+    private let initializer: () -> Int
+    init(_ initializer: @escaping () -> Int) {
+        self.initializer = initializer
+    }
+
+    lazy var value: Int = initializer()
 }

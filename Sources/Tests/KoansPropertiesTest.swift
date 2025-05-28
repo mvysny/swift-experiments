@@ -25,7 +25,21 @@ final class KoansPropertiesTest: XCTestCase {
     
     /// https://play.kotlinlang.org/koans/Properties/Lazy%20property/Task.kt
     func testLazyProperty() {
-        let value = LazyProperty({ 42 }).lazyValue
+        var called = false
+        let prop = LazyProperty({ called = true; return 42 })
+        XCTAssertFalse(called)
+        let value = prop.lazyValue
         XCTAssertEqual(42, value)
+        XCTAssertTrue(called)
+    }
+    
+    /// https://play.kotlinlang.org/koans/Properties/Delegates%20examples/Task.kt
+    func testLazyProperty2() {
+        var called = false
+        let prop = LazyProperty2({ called = true; return 42 })
+        XCTAssertFalse(called)
+        let value = prop.value
+        XCTAssertEqual(42, value)
+        XCTAssertTrue(called)
     }
 }
