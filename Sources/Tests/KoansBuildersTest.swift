@@ -21,6 +21,6 @@ struct KoansBuildersTest {
     
     /// https://play.kotlinlang.org/koans/Builders/Html%20builders/Task.kt
     @Test func testHtmlBuilders() {
-        #expect(makeHtml() == "<html><table><tr><td>Product</td><td>Price</td><td>Popularity</td></tr></table></html>")
+        #expect(makeHtml() == "<html><table><tr><td>Product</td><td>Price</td><td>Popularity</td></tr><tr><td>Product 1</td><td>100 won</td><td>10%</td></tr><tr><td>Product 2</td><td>200 won</td><td>20%</td></tr></table></html>")
     }
 }

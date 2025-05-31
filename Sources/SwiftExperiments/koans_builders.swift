@@ -85,9 +85,25 @@ struct HtmlText : HtmlNode {
 
 @resultBuilder
 struct HtmlBuilder {
-    typealias Component = HtmlNode
-    static func buildBlock(_ components: HtmlNode...) -> [HtmlNode] {
-        Array(components)
+    typealias Component = [HtmlNode]
+    typealias Expression = HtmlNode
+    static func buildExpression(_ element: Expression) -> Component {
+        return [element]
+    }
+    static func buildBlock(_ components: Component...) -> Component {
+        components.flatMap { $0 }
+    }
+    static func buildArray(_ components: [Component]) -> Component {
+        components.flatMap { $0 }
+    }
+    static func buildOptional(_ component: Component?) -> Component {
+        component != nil ? component! : []
+    }
+    static func buildEither(first component: Component) -> Component {
+        component
+    }
+    static func buildEither(second component: Component) -> Component {
+        component
     }
 }
 
@@ -119,6 +135,19 @@ func makeHtml() -> String {
                 }
                 td {
                     text("Popularity")
+                }
+            }
+            for i in 1...2 {
+                tr {
+                    td {
+                        text("Product \(i)")
+                    }
+                    td {
+                        text("\(i * 100) won")
+                    }
+                    td {
+                        text("\(i * 10)%")
+                    }
                 }
             }
         }
