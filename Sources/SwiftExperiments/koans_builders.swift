@@ -31,7 +31,6 @@ func makeList() -> [Int] {
 @resultBuilder
 struct MapBuilder<K: Hashable, V> {
     typealias Component = Dictionary<K, V>
-    typealias Expression = (K, V)
     static func buildBlock(_ elements: Component...) -> Component {
         var result: Component = [:]
         for element in elements {
@@ -62,4 +61,66 @@ func usage() -> [Int:String] {
             put(i, "\(i)")
         }
     }
+}
+
+/// https://play.kotlinlang.org/koans/Builders/Html%20builders/Task.kt
+
+protocol HtmlNode {
+    func toHtml() -> String
+}
+struct HtmlElement : HtmlNode {
+    let tag: String
+    var children: [HtmlNode] = []
+
+    func toHtml() -> String {
+        "<\(tag)>\(children.map { $0.toHtml() }.joined())</\(tag)>"
+    }
+}
+struct HtmlText : HtmlNode {
+    let text: String
+    func toHtml() -> String {
+        text
+    }
+}
+
+@resultBuilder
+struct HtmlBuilder {
+    typealias Component = HtmlNode
+    static func buildBlock(_ components: HtmlNode...) -> [HtmlNode] {
+        Array(components)
+    }
+}
+
+func html(@HtmlBuilder content: () -> [HtmlNode]) -> HtmlNode {
+    HtmlElement(tag: "html", children: content())
+}
+func table(@HtmlBuilder content: () -> [HtmlNode]) -> HtmlNode {
+    HtmlElement(tag: "table", children: content())
+}
+func tr(@HtmlBuilder content: () -> [HtmlNode]) -> HtmlNode {
+    HtmlElement(tag: "tr", children: content())
+}
+func td(@HtmlBuilder content: () -> [HtmlNode]) -> HtmlNode {
+    HtmlElement(tag: "td", children: content())
+}
+func text(_ text: String) -> HtmlNode {
+    HtmlText(text: text)
+}
+
+func makeHtml() -> String {
+    html {
+        table {
+            tr {
+                td {
+                    text("Product")
+                }
+                td {
+                    text("Price")
+                }
+                td {
+                    text("Popularity")
+                }
+            }
+        }
+    } .toHtml()
 }
